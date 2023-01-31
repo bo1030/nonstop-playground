@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -17,7 +18,14 @@ public class BaseControllerAdvice {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationException(MethodArgumentNotValidException e) {
-        return ResponseEntity.badRequest().body(e.getBindingResult().getAllErrors().stream().collect(Collectors.toMap(o -> ((FieldError) o).getField(), o -> o.getDefaultMessage())));
+        log.error("Validation error is occurred");
+
+        Map<String,String> errors = e.getBindingResult().getAllErrors().stream()
+                .collect(Collectors.toMap(
+                        o -> ((FieldError) o).getField(),
+                        o -> Optional.ofNullable(o.getDefaultMessage()).orElse(((FieldError) o).getField() + "'s valdation error is occured")));
+
+        return ResponseEntity.badRequest().body(errors);
     }
 
     @ExceptionHandler(BaseException.class)
