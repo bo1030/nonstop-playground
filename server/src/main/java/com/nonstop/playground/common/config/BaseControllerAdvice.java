@@ -23,7 +23,7 @@ public class BaseControllerAdvice {
         Map<String,String> errors = e.getBindingResult().getAllErrors().stream()
                 .collect(Collectors.toMap(
                         o -> ((FieldError) o).getField(),
-                        o -> Optional.ofNullable(o.getDefaultMessage()).orElse(((FieldError) o).getField() + "'s valdation error is occured")));
+                        o -> Optional.ofNullable(o.getDefaultMessage()).orElse(((FieldError) o).getField() + "'s validation error is occurred")));
 
         return ResponseEntity.badRequest().body(errors);
     }
