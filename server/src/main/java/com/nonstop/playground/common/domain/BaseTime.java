@@ -1,4 +1,4 @@
-package com.nonstop.playground.common.entity;
+package com.nonstop.playground.common.domain;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
