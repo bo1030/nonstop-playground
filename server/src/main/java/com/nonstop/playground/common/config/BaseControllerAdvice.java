@@ -29,10 +29,10 @@ public class BaseControllerAdvice {
     }
 
     @ExceptionHandler(BaseException.class)
-    public <T extends BaseException> ResponseEntity<BaseException> handleBaseExecption(T customException) {
+    public <T extends BaseException> ResponseEntity<BaseException> handleBaseException(T customException) {
         log.error(customException.getClassName() + "is occurred!", customException);
 
-        return ResponseEntity.internalServerError().body(customException);
+        return ResponseEntity.status(customException.getHttpStatus()).body(customException);
     }
 
     @ExceptionHandler(Exception.class)
