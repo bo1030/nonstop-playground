@@ -16,7 +16,7 @@ public class WebSecurityConfig {
             // -- swagger ui
             "/api-docs/**",
             "/swagger-ui/**",
-            "/users/*/hello"
+            "/users/*/user/duplicate"
     };
 
     @Bean
