@@ -29,16 +29,16 @@ public class BaseControllerAdvice {
     }
 
     @ExceptionHandler(BaseException.class)
-    public <T extends BaseException> ResponseEntity<BaseException> handleBaseException(T customException) {
+    public <T extends BaseException> ResponseEntity<ExceptionDTO> handleBaseException(T customException) {
         log.error(customException.getClassName() + "is occurred!", customException);
 
-        return ResponseEntity.status(customException.getHttpStatus()).body(customException);
+        return ResponseEntity.status(customException.getHttpStatus()).body(new ExceptionDTO(customException));
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Exception> handleUnexpectedException(Exception exception) {
+    public ResponseEntity<ExceptionDTO> handleUnexpectedException(Exception exception) {
         log.error("Unexpected exception is occurred!", exception);
 
-        return ResponseEntity.internalServerError().body(exception);
+        return ResponseEntity.internalServerError().body(new ExceptionDTO(exception));
     }
 }
