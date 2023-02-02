@@ -2,6 +2,7 @@ package com.nonstop.playground.user.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nonstop.playground.common.domain.BaseTime;
+import com.nonstop.playground.common.util.BcryptUtils;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,4 +27,17 @@ public class User extends BaseTime {
     @Column
     @JsonIgnore
     private String adminYn;
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.hashedPassword = BcryptUtils.encodePassword(password);
+    }
+
+    public void giveAdmin() {
+        this.adminYn = "Y";
+    }
+
+    public void takeAwayAdmin() {
+        this.adminYn = "N";
+    }
 }
