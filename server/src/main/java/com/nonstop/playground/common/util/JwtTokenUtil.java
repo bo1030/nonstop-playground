@@ -53,7 +53,7 @@ public class JwtTokenUtil {
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
-    public Boolean validateToken(String token, UserDetails userDetails) {
+    public boolean validateToken(String token, UserDetails userDetails) {
         final String userId = getUserIdFromToken(token);
         return (userId.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
