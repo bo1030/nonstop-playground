@@ -10,18 +10,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/accounts")
 @RequiredArgsConstructor
 public class AccountRestController {
 
     private final AccountService accountService;
 
-    @PostMapping("/v1/user")
+    @PostMapping("/v1/account")
     public ResponseEntity<Account> register(@Valid @RequestBody CreateAccountDTO createAccountDTO) {
         return ResponseEntity.ok(accountService.register(createAccountDTO.getUserName(), createAccountDTO.getPassword()));
     }
 
-    @GetMapping("/v1/user/duplicate")
+    @GetMapping("/v1/account/duplicate")
     public Boolean existsByUserName(@RequestParam String userName) {
         return accountService.isDuplicate(userName);
     }

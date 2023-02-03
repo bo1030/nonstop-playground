@@ -26,12 +26,12 @@ public class WebSecurityConfig {
 
     private final JwtRequestFilter jwtRequestFilter;
 
-    private static final String REGISTER_URL = "/users/*/user";
+    private static final String REGISTER_URL = "/accounts/*/user";
     private static final String[] AUTH_WHITELIST = {
             // -- swagger ui
             "/api-docs/**",
             "/swagger-ui/**",
-            "/users/*/user/duplicate",
+            "/accounts/*/user/duplicate",
             "/h2-console",
             "/favicon.ico",
     };
