@@ -24,4 +24,10 @@ public class JwtUserDetailsService implements UserDetailsService {
 
         return new User(user.getId().toString(), user.getHashedPassword(), new ArrayList<>());
     }
+
+    public UserDetails loadUserByUserId(String userId) {
+         return loadUserByUsername(userId);
+    }
+
+
 }

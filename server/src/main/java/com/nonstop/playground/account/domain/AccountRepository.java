@@ -8,5 +8,7 @@ public interface AccountRepository {
 
     Optional<Account> findById(long id);
 
-    Optional<Account> findByUserName(String userName);
+    Account findByUserName(String userName);
+
+
 }
