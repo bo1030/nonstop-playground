@@ -1,4 +1,4 @@
-package com.nonstop.playground.user.application.exception;
+package com.nonstop.playground.account.application.exception;
 
 import com.nonstop.playground.common.exception.BaseException;
 import org.springframework.http.HttpStatus;
