@@ -1,8 +1,7 @@
-package com.nonstop.playground.user.domain;
+package com.nonstop.playground.account.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nonstop.playground.common.domain.BaseTime;
-import com.nonstop.playground.common.util.BcryptUtils;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,9 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class User extends BaseTime {
+public class Account extends BaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
     @Column
@@ -28,9 +28,10 @@ public class User extends BaseTime {
     @JsonIgnore
     private String adminYn;
 
-    public User(String userName, String password) {
+    public Account(String userName, String hashedPassword) {
         this.userName = userName;
-        this.hashedPassword = BcryptUtils.encodePassword(password);
+        this.hashedPassword = hashedPassword;
+        this.adminYn = "N";
     }
 
     public void giveAdmin() {
